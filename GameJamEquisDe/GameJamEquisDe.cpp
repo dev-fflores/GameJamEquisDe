@@ -3,6 +3,7 @@
 using namespace System;
 using namespace std;
 
+<<<<<<< HEAD
 int numero(int a, int b) {
     int n;
 
@@ -11,11 +12,23 @@ int numero(int a, int b) {
     return a + b;
 
 }
+=======
+>>>>>>> fflores
 
 
 int main()
 {
-    cout << "holaxdd";
+    int a, b;
+    int suma;
+
+    cout << "Ingrese primer numero: ";
+	cin >> a;
+
+	cout << "Ingrese segundo numero: ";
+	cin >> b;
+
+
+
 
 
     
