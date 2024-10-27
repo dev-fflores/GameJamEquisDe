@@ -4,9 +4,21 @@
 using namespace System;
 using namespace std;
 
+
+
 int main()
 {
-    cout << "holaxdd";
+    int a, b;
+    int suma;
+
+    cout << "Ingrese primer numero: ";
+	cin >> a;
+
+	cout << "Ingrese segundo numero: ";
+	cin >> b;
+
+
+
 
 
     
