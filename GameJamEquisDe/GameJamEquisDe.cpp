@@ -66,7 +66,6 @@ void showIntro() {
 int mostrarmenu() {
     int elegir;
 
-
     cout << "1. Jugar\n";
     cout << "2. Creditos\n";
     cout << "3. Salir\n\n";
@@ -115,20 +114,20 @@ void IniciarCarrera() {
         x1 += dx1;
         x2 += dx2;
 
-        if (x1 < Meta && y1 == 10) {
+        if (x1 < Meta-9 && y1 == 10) {
             x1 += dx1;
         }
-        else if (x1 >= Meta && y1 > Alturac1) { 
+        else if (x1 >= Meta-9 && y1 > Alturac1) { 
             y1--;
         }
         else if (y1 == Alturac1 && x1 > IzquierdaMeta) {
             x1--;
         }
 
-        if (x2 < Meta && y2 == 15) {
+        if (x2 < Meta-9 && y2 == 15) {
             x2 += dx2;
         }
-        else if (x2 >= Meta && y2 > Alturac2) { 
+        else if (x2 >= Meta-9 && y2 > Alturac2) { 
             y2--;
         }
         else if (y2 == Alturac2 && x2 > IzquierdaMeta) { 
