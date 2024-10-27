@@ -84,6 +84,11 @@ void IniciarCarrera() {
     bool hay_ganador = false;
     int carreras_c1 = 0, carreras_c2 = 0;
     const int Meta = 150;
+
+    const int AlturaMeta1 = 5;        
+    const int AlturaMeta2 = 12;  
+    const int IzquierdaMeta = 100;
+
          titulo(28, 1);     meta(Meta, 3);
     //coordenadas de los caracteres
     float x1, y1, dx1;
@@ -101,7 +106,6 @@ void IniciarCarrera() {
     while (1) {
 
         panel_control(dx1, dx2, x1, x2, carreras_c1, carreras_c2);
-
         cursor(35, 5); cout << "CARRERA " << cuenta_carreras;
         //borrar
         borra_auto(x1, y1);
@@ -110,20 +114,43 @@ void IniciarCarrera() {
         //mover
         x1 += dx1;
         x2 += dx2;
+
+        if (x1 < Meta && y1 == 10) {
+            x1 += dx1;
+        }
+        else if (x1 >= Meta && y1 > AlturaMeta1) { 
+            y1--;
+        }
+        else if (y1 == AlturaMeta1 && x1 > IzquierdaMeta) {
+            x1--;
+        }
+
+        if (x2 < Meta && y2 == 15) {
+            x2 += dx2;
+        }
+        else if (x2 >= Meta && y2 > AlturaMeta2) { 
+            y2--;
+        }
+        else if (y2 == AlturaMeta2 && x2 > IzquierdaMeta) { 
+            x2--;
+        }
+
         //dibujar
         dibuja_auto(x1, y1);
-
         dibujarauto2(x2, y2);
 
+     
+
+
         //verifica quien gana 
-        if (x1 > Meta - 9) {
+        if (x1 == IzquierdaMeta && y1 == AlturaMeta1) {
             cursor(30, 35); cout << "GANA CARACTER 1";
             system("pause>0");
             hay_ganador = true;
             carreras_c1++;
         }
 
-        if (x2 > Meta -8) {
+        if (x2 == IzquierdaMeta && y2 == AlturaMeta2) {
             cursor(30, 35); cout << "GANA CARACTER 2";
             system("pause>0");
             hay_ganador = true;
@@ -133,8 +160,9 @@ void IniciarCarrera() {
         if (hay_ganador) {
             //reinicia una nueva carrera
             Console::Clear();
-            titulo(28, 1);     meta(Meta, 3);
+            titulo(28, 1);     
             x1 = x2 = 1;
+            
             dx1 = aleatorio_decimal();
             dx2 = aleatorio_decimal();
             cuenta_carreras++;
@@ -181,7 +209,6 @@ void opcionesdemenu() {
 int main()
 {
     srand(time(nullptr));
-  
 
     ConfigurarVentana();
     opcionesdemenu();
