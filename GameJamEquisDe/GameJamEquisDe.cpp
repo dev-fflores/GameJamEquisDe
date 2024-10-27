@@ -7,11 +7,11 @@ using namespace std;
 const int HEIGHT = 120;
 const int WIDTH = 40;
 
-void configurarventana() {
+void configWindow() {
     Console::SetWindowSize(HEIGHT, WIDTH);
     Console::CursorVisible = false;
 }
-void mostrarcarga() {
+void showIntro() {
 
 
     cout << "\n\n\n\n\n\n\t\t\t\t  ____  _                           _     _        \n";
@@ -83,7 +83,7 @@ int main()
 {
 
 
-    configurarventana();
+    showIntro();
     opcionesdemenu();
 
 
