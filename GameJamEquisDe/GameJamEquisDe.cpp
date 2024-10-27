@@ -1,57 +1,6 @@
 #include "pch.h";
-#include <iostream>
-#include <Windows.h>
-using namespace System;
-using namespace std;
+#include "MisFunciones.h"
 
-const int HEIGHT = 200;
-const int WIDTH = 50;
-
-struct Vector2 {
-	int x, y;
-};
-
-
-struct PowerUp {
-	Vector2 position;
-	char symbol;
-	ConsoleColor color;
-	bool active;
-	float speed_multiplier = 1.2f;
-
-	void draw() {
-		Console::SetCursorPosition(position.x, position.y);
-		Console::ForegroundColor = color;
-		cout << symbol;
-	}
-
-	void clear() {
-		Console::SetCursorPosition(position.x, position.y);
-		cout << ' ';
-	}
-
-	void update() {
-		position.y++;
-	}
-
-	void checkCollision(Vector2 player_position) {
-		if (position.x == player_position.x && position.y == player_position.y) {
-			active = false;
-		}
-	}
-
-	void reset(Vector2 player_position) {
-		position.x = rand() % WIDTH;
-		position.y = rand() % HEIGHT;
-		active = true;
-	}
-};
-
-
-void configWindow() {
-    Console::SetWindowSize(HEIGHT, WIDTH);
-    Console::CursorVisible = false;
-}
 void showIntro() {
 
 
@@ -62,8 +11,6 @@ void showIntro() {
     cout << "\t\t\t\t |____/|_|Y___|_| |_|Y_/ L___|_| |_|_|L__,_|L___/  ";
 
 
-
-
     cout << "\n\n\n\n\n\n\n\n\n\n\t\t\t\t ";
     char x = 219;
     for (int i = 0; i <= 40; i++) {
@@ -71,7 +18,6 @@ void showIntro() {
         cout << x;
     }
 }
-
 int mostrarmenu() {
     int elegir;
 
@@ -88,10 +34,76 @@ int mostrarmenu() {
     return elegir;
 }
 
+void IniciarCarrera() {
+    int cuenta_carreras = 1;
+    bool hay_ganador = false;
+    int carreras_c1 = 0, carreras_c2 = 0;
+    const int Meta = 150;
+         titulo(28, 1);     meta(Meta, 3);
+    //coordenadas de los caracteres
+    float x1, y1, dx1;
+    float x2, y2, dx2;
+
+    x1 = x2 = 1;
+    y1 = 10;
+    y2 = 20;
+    dx1 = aleatorio_decimal();
+    dx2 = aleatorio_decimal();
+
+    cursor(x1, y1); cout << "@";
+    cursor(x2, y2); cout << "O";
+
+    while (1) {
+
+        panel_control(dx1, dx2, x1, x2, carreras_c1, carreras_c2);
+
+        cursor(35, 5); cout << "CARRERA " << cuenta_carreras;
+        //borrar
+        borra_auto(x1, y1);
+
+        borraauto2(x2, y2);
+        //mover
+        x1 += dx1;
+        x2 += dx2;
+        //dibujar
+        dibuja_auto(x1, y1);
+
+        dibujarauto2(x2, y2);
+
+        //verifica quien gana 
+        if (x1 > Meta - 9) {
+            cursor(30, 35); cout << "GANA CARACTER 1";
+            system("pause>0");
+            hay_ganador = true;
+            carreras_c1++;
+        }
+
+        if (x2 > Meta -8) {
+            cursor(30, 35); cout << "GANA CARACTER 2";
+            system("pause>0");
+            hay_ganador = true;
+            carreras_c2++;
+        }
+
+        if (hay_ganador) {
+            //reinicia una nueva carrera
+            Console::Clear();
+            titulo(28, 1);     meta(Meta, 3);
+            x1 = x2 = 1;
+            dx1 = aleatorio_decimal();
+            dx2 = aleatorio_decimal();
+            cuenta_carreras++;
+            hay_ganador = false;
+        }
+
+
+        _sleep(30);
+    }
+}
+
 void opcionesdemenu() {
     int escoger = 0;
     showIntro();
-    Sleep(200);
 
     system("cls");
 
@@ -102,6 +114,7 @@ void opcionesdemenu() {
 
         switch (escoger) {
         case 1:
+            IniciarCarrera();
             system("cls");
             break;
         case 2:
@@ -129,8 +142,12 @@ void dibujarCarro() {
 
 int main()
 {
-	configWindow();
-	dibujarCarro();
+    srand(time(nullptr));
+
+  
+
+    ConfigurarVentana();
+    opcionesdemenu();
 
 
     system("pause>0");
