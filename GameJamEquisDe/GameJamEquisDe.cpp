@@ -4,8 +4,49 @@
 using namespace System;
 using namespace std;
 
-const int HEIGHT = 120;
-const int WIDTH = 40;
+const int HEIGHT = 200;
+const int WIDTH = 50;
+
+struct Vector2 {
+	int x, y;
+};
+
+
+struct PowerUp {
+	Vector2 position;
+	char symbol;
+	ConsoleColor color;
+	bool active;
+	float speed_multiplier = 1.2f;
+
+	void draw() {
+		Console::SetCursorPosition(position.x, position.y);
+		Console::ForegroundColor = color;
+		cout << symbol;
+	}
+
+	void clear() {
+		Console::SetCursorPosition(position.x, position.y);
+		cout << ' ';
+	}
+
+	void update() {
+		position.y++;
+	}
+
+	void checkCollision(Vector2 player_position) {
+		if (position.x == player_position.x && position.y == player_position.y) {
+			active = false;
+		}
+	}
+
+	void reset(Vector2 player_position) {
+		position.x = rand() % WIDTH;
+		position.y = rand() % HEIGHT;
+		active = true;
+	}
+};
+
 
 void configWindow() {
     Console::SetWindowSize(HEIGHT, WIDTH);
@@ -49,7 +90,7 @@ int mostrarmenu() {
 
 void opcionesdemenu() {
     int escoger = 0;
-    mostrarcarga();
+    showIntro();
     Sleep(200);
 
     system("cls");
@@ -79,12 +120,17 @@ void opcionesdemenu() {
     }
 }
 
+void dibujarCarro() {
+	cout << "   __" << endl;
+	cout << " _|__|__" << endl;
+	cout << "'-O---O-'" << endl;
+
+}
+
 int main()
 {
-
-
-    showIntro();
-    opcionesdemenu();
+	configWindow();
+	dibujarCarro();
 
 
     system("pause>0");
