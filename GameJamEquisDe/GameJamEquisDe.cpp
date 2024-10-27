@@ -85,9 +85,9 @@ void IniciarCarrera() {
     int carreras_c1 = 0, carreras_c2 = 0;
     const int Meta = 150;
 
-    const int AlturaMeta1 = 5;        
-    const int AlturaMeta2 = 12;  
-    const int IzquierdaMeta = 100;
+    const int Alturac1 = 5;        
+    const int Alturac2 = 12;  
+    const int IzquierdaMeta = 40;
 
          titulo(28, 1);     meta(Meta, 3);
     //coordenadas de los caracteres
@@ -118,20 +118,20 @@ void IniciarCarrera() {
         if (x1 < Meta && y1 == 10) {
             x1 += dx1;
         }
-        else if (x1 >= Meta && y1 > AlturaMeta1) { 
+        else if (x1 >= Meta && y1 > Alturac1) { 
             y1--;
         }
-        else if (y1 == AlturaMeta1 && x1 > IzquierdaMeta) {
+        else if (y1 == Alturac1 && x1 > IzquierdaMeta) {
             x1--;
         }
 
         if (x2 < Meta && y2 == 15) {
             x2 += dx2;
         }
-        else if (x2 >= Meta && y2 > AlturaMeta2) { 
+        else if (x2 >= Meta && y2 > Alturac2) { 
             y2--;
         }
-        else if (y2 == AlturaMeta2 && x2 > IzquierdaMeta) { 
+        else if (y2 == Alturac2 && x2 > IzquierdaMeta) { 
             x2--;
         }
 
@@ -143,14 +143,14 @@ void IniciarCarrera() {
 
 
         //verifica quien gana 
-        if (x1 == IzquierdaMeta && y1 == AlturaMeta1) {
+        if (x1 == IzquierdaMeta && y1 == Alturac1) {
             cursor(30, 35); cout << "GANA CARACTER 1";
             system("pause>0");
             hay_ganador = true;
             carreras_c1++;
         }
 
-        if (x2 == IzquierdaMeta && y2 == AlturaMeta2) {
+        if (x2 == IzquierdaMeta && y2 == Alturac2) {
             cursor(30, 35); cout << "GANA CARACTER 2";
             system("pause>0");
             hay_ganador = true;
