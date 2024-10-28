@@ -86,66 +86,64 @@ void IniciarCarrera() {
     int cuenta_carreras = 1;
     bool hay_ganador = false;
     int carreras_c1 = 0, carreras_c2 = 0;
-    const int Meta = 150;
+    const int Meta = 100;
 
-    const int Alturac1 = 5;        
-    const int Alturac2 = 12;  
+    const int Alturac1 = 5;
+    const int Alturac2 = 12;
     const int IzquierdaMeta = 40;
 
-         titulo(28, 1);     meta(Meta, 3);
-    //coordenadas de los caracteres
-    float x1, y1, dx1;
-    float x2, y2, dx2;
+    titulo(28, 1);
+    meta(Meta, 3);
 
-    x1 = x2 = 1;
-    y1 = 10;
-    y2 = 20;
-    dx1 = aleatorio_decimal();
-    dx2 = aleatorio_decimal();
+    float x1 = 12;
+    float y1 = 45;
+    float x2 = 6;
+    float y2 = 41;
+
+
+    float dx1 = aleatorio_decimal();
+    float dx2 = aleatorio_decimal();
 
     cursor(x1, y1); cout << "@";
     cursor(x2, y2); cout << "O";
 
     while (1) {
-
         panel_control(dx1, dx2, x1, x2, carreras_c1, carreras_c2);
         cursor(35, 5); cout << "CARRERA " << cuenta_carreras;
-        //borrar
-        borra_auto(x1, y1);
 
+        // Borrar posiciones anteriores
+        borra_auto(x1, y1);
         borraauto2(x2, y2);
-        //mover
+
+        // Mover posiciones
         x1 += dx1;
         x2 += dx2;
 
-        if (x1 < Meta-9 && y1 == 10) {
+        if (x1 < Meta - 9 && y1 == 46) {
             x1 += dx1;
         }
-        else if (x1 >= Meta-9 && y1 > Alturac1) { 
+        else if (x1 >= Meta - 9 && y1 > Alturac1) {
             y1--;
         }
         else if (y1 == Alturac1 && x1 > IzquierdaMeta) {
             x1--;
         }
 
-        if (x2 < Meta-9 && y2 == 15) {
+        if (x2 < Meta - 9 && y2 == 43) {
             x2 += dx2;
         }
-        else if (x2 >= Meta-9 && y2 > Alturac2) { 
+        else if (x2 >= Meta - 9 && y2 > Alturac2) {
             y2--;
         }
-        else if (y2 == Alturac2 && x2 > IzquierdaMeta) { 
+        else if (y2 == Alturac2 && x2 > IzquierdaMeta) {
             x2--;
         }
 
-        //dibujar
+        // Dibujar en las nuevas posiciones
         dibuja_auto(x1, y1);
         dibujarauto2(x2, y2);
 
-     
-
-
-        //verifica quien gana 
+        // Verifica quién gana
         if (x1 == IzquierdaMeta && y1 == Alturac1) {
             cursor(30, 35); cout << "GANA CARACTER 1";
             system("pause>0");
@@ -161,17 +159,19 @@ void IniciarCarrera() {
         }
 
         if (hay_ganador) {
-            //reinicia una nueva carrera
+            // Reinicia una nueva carrera
             Console::Clear();
-            titulo(28, 1);     
-            x1 = x2 = 1;
-            
+            titulo(28, 1);
+            x1 = 3; // Reinicia en el punto inicial
+            y1 = 46;
+            x2 = 3;
+            y2 = 43;
+
             dx1 = aleatorio_decimal();
             dx2 = aleatorio_decimal();
             cuenta_carreras++;
             hay_ganador = false;
         }
-
 
         _sleep(30);
     }
