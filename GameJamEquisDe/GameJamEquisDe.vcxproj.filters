@@ -29,6 +29,9 @@
     <ClInclude Include="MisFunciones.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="Objects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameJamEquisDe.cpp">

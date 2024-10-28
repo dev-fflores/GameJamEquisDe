@@ -1,5 +1,10 @@
 #include "pch.h";
 #include "MisFunciones.h"
+#include "Objects.h"
+
+using namespace System;
+using namespace std;
+
 void bienvenida() {
     int mapa1[30][200] =
     { 
@@ -216,9 +221,91 @@ int main()
 {
     srand(time(nullptr));
 
-    ConfigurarVentana();
-    opcionesdemenu();
+    /*ConfigurarVentana();
+    opcionesdemenu();*/
+	bool is_game_over = false;
 
+	int count = 0;
+    Car carro1 = {
+    {8,44}, // position
+    0,      // direction
+    1.4f,   // velocity
+    0,      // wins
+    {       // sprite
+        {' ', '_', '_', '_', '_', '_', ' '},
+        {'|', ' ', ' ', ' ', ' ', ' ', '|'},
+        {'|', '_', '_', '_', '_', '_', '|'}
+    },
+    ConsoleColor::Green // color
+    };
+
+	Car carro2 = {
+	{12,40}, // position
+	0,      // direction
+	1.3f,   // velocity
+	0,      // wins
+	{       // sprite
+		{' ', '_', '_', '_', '_', '_', ' '},
+		{'|', ' ', ' ', ' ', ' ', ' ', '|'},
+		{'|', '_', '_', '_', '_', '_', '|'}
+	},
+	ConsoleColor::Red // color
+	};
+
+	Vector2 carro1_position_initial = { carro1.position.x, carro1.position.y};
+	Vector2 carro2_position_initial = { carro2.position.x, carro2.position.y };
+
+    carro1.direction = 0;
+	carro2.direction = 0;
+
+    Map map;
+	Console::CursorVisible = false;
+
+    map.update();
+    while (1) {
+        
+
+
+        carro1.update();
+		carro2.update();
+
+        if (carro1.position.x >= 129 && carro1.direction == 0) {
+            carro1.direction = 1;
+        }else if (carro1.position.y <= 3 && carro1.direction == 1) {
+			carro1.direction = 2;
+		}else if (carro1.position.x <= 4 && carro1.direction == 2) {
+			carro1.direction = 3;
+		}else if (carro1.position.y >= carro1_position_initial.y && carro1.direction == 3) {
+			carro1.direction = 0;
+		}
+
+		if (carro2.position.x >= 121 && carro2.direction == 0) {
+			carro2.direction = 1;
+		}
+		else if (carro2.position.y <= 8 && carro2.direction == 1) {
+			carro2.direction = 2;
+		}
+		else if (carro2.position.x <= 12 && carro2.direction == 2) {
+			carro2.direction = 3;
+		}
+		else if (carro2.position.y >= carro2_position_initial.y && carro2.direction == 3) {
+			carro2.direction = 0;
+		}
+
+        if (carro1.position.x == carro1_position_initial.x && carro1.position.y == carro1_position_initial.y) {
+            system("cls");
+			cout << "Ganaste!" << endl;
+			break;
+        }
+
+		if (carro2.position.x == carro2_position_initial.x && carro2.position.y == carro2_position_initial.y) {
+			system("cls");
+			cout << "Ganaste!" << endl;
+			break;
+		}
+
+		_sleep(100);
+	}
 
     system("pause>0");
     return 0;

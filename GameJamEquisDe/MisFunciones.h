@@ -1,14 +1,17 @@
+#ifndef MISFUNCIONES_H
+#define MISFUNCIONES_H
+
 #include <iostream>
 #include <Windows.h>
 
 using namespace System;
 using namespace std;
 
-const int HEIGHT = 200;
-const int WIDTH = 50;
+const int WIDTH = 200;
+const int HEIGHT = 50;
 
 void ConfigurarVentana() {
-    Console::SetWindowSize(HEIGHT, WIDTH);
+    Console::SetWindowSize(WIDTH, HEIGHT);
     Console::CursorVisible = false;
 }
 
@@ -74,3 +77,5 @@ void borraauto2(int x, int y) {
     cursor(x, y + 1); cout << "           ";
     cursor(x, y + 2); cout << "           ";
 }
+
+#endif // MISFUNCIONES_H
