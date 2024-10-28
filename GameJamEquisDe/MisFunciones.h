@@ -21,8 +21,57 @@ void titulo(int x, int y) {
 
 void meta(int x, int y) {
 
-    for (int i = y; i < 40; i++) {
-        cursor(x, i); cout << "|";
+    for (int y = 0; y < 50; ++y) {
+        for (int x = 0; x < 140; ++x) {
+            if ((x == 3 || x == 136) && y > 2 && y < 47) {
+                cout << "|";
+            }
+            else if ((y == 2 || y == 47) && x > 3 && x < 136) {
+                cout << "-";
+            }
+            else if ((x == 11 || x == 128) && y > 6 && y < 43) {
+                cout << "|";
+            }
+            else if ((y == 6 || y == 43) && x > 11 && x < 128) {
+                cout << "-";
+            }
+            else if ((x == 19 || x == 120) && y > 10 && y < 39) {
+                cout << "|";
+            }
+            else if ((y == 10 || y == 39) && x > 19 && x < 120) {
+                cout << "-";
+            }
+            else if ((x == 27 || x == 112) && y > 14 && y < 35) {
+                cout << "|";
+            }
+            else if ((y == 14 || y == 35) && x > 27 && x < 112) {
+                cout << "-";
+            }
+            else if ((x == 35 || x == 104) && y > 18 && y < 31) {
+                cout << "|";
+            }
+            else if ((y == 18 || y == 31) && x > 35 && x < 104) {
+                cout << "-";
+            }
+            else if (y == 47 && x < 40) {
+                cout << (x % 2 == 0 ? "#" : " ");
+            }
+            else if (y == 1 && x < 40) {
+                cout << (x % 2 == 0 ? "#" : " ");
+            }
+            else if (y == 46 && x == 50) {
+                cout << "PARTIDA";
+                x += 6;
+            }
+            else if (y == 2 && x == 50) {
+                cout << "META";
+                x += 3;
+            }
+            else {
+                cout << " ";
+            }
+        }
+        cout << endl;
     }
 }
 
